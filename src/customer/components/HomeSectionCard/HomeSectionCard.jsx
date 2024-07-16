@@ -1,13 +1,13 @@
 import React from 'react';
 
-const HomeSectionCard = ({product}) => {
+const HomeSectionCard = ({ product }) => {
   return (
-    <div className='bg-white cursor-pointer flex flex-col items-center rounded-lg shadow-lg overflow-hidden w-[15rem] mx-3 border   '>
-      <div className='h-[13rem] w-[10rem]'>
+    <div className='bg-white cursor-pointer flex flex-col items-center rounded-lg shadow-lg overflow-hidden w-[15rem] m-3 border'>
+      <div className='h-[13rem] w-[10rem] overflow-hidden'>
         <img
           className='object-cover object-top w-full h-full'
           src={product.imageUrl}
-          alt=""
+          alt={product.title}
         />
       </div>
       <div className='p-4'>
