@@ -6,13 +6,15 @@ import HomePage from './customer/pages/HomePage/HomePage';
 import Footer from './customer/components/Footer/Footer';
 import { BrowserRouter } from 'react-router-dom';
 import ProductDetails from './customer/components/ProductDetails/ProductDetails';
+import Cart from './customer/components/Cart/Cart';
 
 function App() {
   return (<>
     <Navigation/>
      {/* <HomePage/> */}
      {/* <Product/> */}
-     <ProductDetails/>
+     { /* <ProductDetails/> */}
+     <Cart/>
      <Footer/>
       </>
   );
