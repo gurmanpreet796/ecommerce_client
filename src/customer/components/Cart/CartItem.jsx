@@ -8,7 +8,7 @@ const CartItem = () => {
         <div className='p-5 shadow-lg border rounded-md'>
             <div className= 'flex items-center'>
                 <div className='w-[Srem] h-[Srem] lg:w[9rem] lg:h-[9rem]'>
-                    <img className = 'w-full h-full object-cover object-top' src="" alt="" />
+                    <img className = 'w-full h-full object-cover object-top' src="https://rukminim2.flixcart.com/image/612/612/xif0q/top/z/k/w/xs-1-07top-nandini-new-fastion-original-imah2hhwsk8dgfrm.jpeg?q=70" alt="" />
 
                 </div>
 
