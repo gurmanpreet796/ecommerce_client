@@ -7,16 +7,16 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 
-
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Avatar, Button, Menu, MenuItem } from "@mui/material";
-
+import { navigationData } from "./navigationData";
 // import AuthModal from "../Auth/AuthModal";
 // import { useDispatch, useSelector } from "react-redux";
 import { deepPurple } from "@mui/material/colors";
 // import { getUser, logout } from "../../../Redux/Auth/Action";
 // import { getCart } from "../../../Redux/Customers/Cart/Action";
 import TextField from "@mui/material/TextField";
-import { navigationData } from "./navigationData";
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -24,14 +24,14 @@ function classNames(...classes) {
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
-  //const navigate = useNavigate();
-  //const dispatch = useDispatch();
- // const { auth, cart } = useSelector((store) => store);
- // const [openAuthModal, setOpenAuthModal] = useState(false);
+  const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  // const { auth, cart } = useSelector((store) => store);
+  // const [openAuthModal, setOpenAuthModal] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
- // const openUserMenu = Boolean(anchorEl);
-  // const jwt = localStorage.getItem("jwt");
-  // const location = useLocation();
+  const openUserMenu = Boolean(anchorEl);
+  const jwt = localStorage.getItem("jwt");
+  const location = useLocation();
 
   // useEffect(() => {
   //   if (jwt) {
@@ -40,12 +40,12 @@ export default function Navigation() {
   //   }
   // }, [jwt]);
 
-  // const handleUserClick = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-  // const handleCloseUserMenu = (event) => {
-  //   setAnchorEl(null);
-  // };
+  const handleUserClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseUserMenu = (event) => {
+    setAnchorEl(null);
+  };
 
   // const handleOpen = () => {
   //   setOpenAuthModal(true);
@@ -54,10 +54,10 @@ export default function Navigation() {
   //   setOpenAuthModal(false);
   // };
 
-  // const handleCategoryClick = (category, section, item, close) => {
-  //   navigate(`/${category.id}/${section.id}/${item.id}`);
-  //   close();
-  // };
+  const handleCategoryClick = (category, section, item, close) => {
+    navigate(`/${category.id}/${section.id}/${item.id}`);
+    close();
+  };
 
   // useEffect(() => {
   //   if (auth.user) {
@@ -265,14 +265,14 @@ export default function Navigation() {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                {/* <Link to="/"> */}
+                <Link to="/">
                   <span className="sr-only">Your Company</span>
                   <img
                     src="https://res.cloudinary.com/ddkso1wxi/image/upload/v1675919455/Logo/Copy_of_Zosh_Academy_nblljp.png"
                     alt="Shopwithzosh"
                     className="h-8 w-8 mr-2"
                   />
-                {/* </Link> */}
+                </Link>
               </div>
 
               {/* Flyout menus */}
@@ -367,14 +367,14 @@ export default function Navigation() {
                                                 className="flex"
                                               >
                                                 <p
-                                                  // onClick={() =>
-                                                  //   handleCategoryClick(
-                                                  //     category,
-                                                  //     section,
-                                                  //     item,
-                                                  //     close
-                                                  //   )
-                                                  // }
+                                                  onClick={() =>
+                                                    handleCategoryClick(
+                                                      category,
+                                                      section,
+                                                      item,
+                                                      close
+                                                    )
+                                                  }
                                                   className="cursor-pointer hover:text-gray-800"
                                                 >
                                                   {item.name}
@@ -413,7 +413,7 @@ export default function Navigation() {
                     <div>
                       <Avatar
                         className="text-white"
-                        // onClick={handleUserClick}
+                        onClick={handleUserClick}
                         aria-controls={open ? "basic-menu" : undefined}
                         aria-haspopup="true"
                         aria-expanded={open ? "true" : undefined}
@@ -438,17 +438,22 @@ export default function Navigation() {
                       <Menu
                         id="basic-menu"
                         anchorEl={anchorEl}
-                      //  open={openUserMenu}
-                        // onClose={handleCloseUserMenu}
+                        open={openUserMenu}
+                        onClose={handleCloseUserMenu}
                         MenuListProps={{
                           "aria-labelledby": "basic-button",
                         }}
                       >
-                        <MenuItem>
-                          {/* {auth.user?.role === "ROLE_ADMIN"
+                        {/* <MenuItem onClick={handleMyOrderClick}>
+                          {auth.user?.role === "ROLE_ADMIN"
                             ? "Admin Dashboard"
-                            : "My Orders"} */}
-                        </MenuItem>
+                            : "My Orders"}
+                        </MenuItem> */}
+                        <MenuItem onClick={handleCloseUserMenu}>Profile</MenuItem>
+
+<MenuItem onClick={()=>navigate("/account/order")}>My Orders</MenuItem>
+
+<MenuItem >Logout</MenuItem>
                         <MenuItem >Logout</MenuItem>
                       </Menu>
                     </div>
@@ -465,7 +470,7 @@ export default function Navigation() {
                 {/* Search */}
                 <div className="flex items-center lg:ml-6">
                 
-                  <p  className="p-2 text-gray-400 hover:text-gray-500">
+                  <p onClick={()=>navigate("/products/search")} className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
                     
                     <MagnifyingGlassIcon
@@ -478,7 +483,7 @@ export default function Navigation() {
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
                   <Button
-                    // onClick={() => navigate("/cart")}
+                    onClick={() => navigate("/cart")}
                     className="group -m-2 flex items-center p-2"
                   >
                     <ShoppingBagIcon
