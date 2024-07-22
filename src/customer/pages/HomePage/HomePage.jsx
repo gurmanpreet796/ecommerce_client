@@ -17,7 +17,7 @@ const HomePage = () => {
 
       </div>
       <div>
-        <Footer></Footer>
+        
       </div>
     </div>
   )
